@@ -195,9 +195,7 @@ class Home(Frame):
 		Button(self.frame_CENTER, text="CARI BUKU", width=10, command=self.cari_buku, relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").pack(side=TOP, padx=2, pady=10)
 	
 	def cari_buku(self):
-		# menampilkan pada jendela baru
 		overlay = Toplevel(self)
-		# Apabila user tidak memasukkan nama buku yang dicari
 		if self.nama.get() == "Masukkan nama buku...":
 			Label(overlay, text="\nMasukkan nama buku!\n", font=("Metropolis", 12)).pack(fill=BOTH)
 			overlay.geometry("300x50")
@@ -297,16 +295,12 @@ class buku_menu(Frame):
 		 column=0, padx= 20, pady=10, rowspan=2)
 
 class add_rak(Frame):
-	# Constructor untuk class add_rak()
 	def __init__(self, master, controller):
 		self.controller = controller
 		self.master = master
 		Frame.__init__(self, master)
-
-		# variabel privat
 		self.make_widget()
 
-	# Method Make_widget()
 	def make_widget(self):
 		# Membuat Frame
 		self.frame_TOP = Frame(self)
@@ -317,24 +311,37 @@ class add_rak(Frame):
 		# Kumpulan Button, Entry, dan Label
 
 		# Navigasi
-		# Jika Buton ditekan akan mengarahkan pada halaman RAK
-		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
 		Button(self.frame_TOP, text="RAK",command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
 		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
 		Button(self.frame_TOP, text="STATUS", command=NONE, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
+		
 		# LABEL
 		Label(self, text="Tambahkan Rak", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
 		Label(self, text="NAMA RAK	").grid(row=2, sticky=W, padx= 20)
 
 		# ENTRY
 		self.nama_rak = StringVar()
-		self.jenis_rak = StringVar()
 		self.e1 = Entry(self, width="30", textvariable= self.nama_rak).grid(row=2, column=1, sticky = W, padx=0)
 
 		# BUTTON
 		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("rak_menu"), relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
-		Button(self, text="TAMBAHKAN", command=NONE, relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
+		Button(self, text="TAMBAHKAN", command=self.tambah_rak, relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
+
+	def tambah_rak(self):
+		# GUI
+		overlay = Toplevel(self)
+		overlay.geometry("300x50")
+		
+		# ACTION
+		kumpulan_rak = database.keys()
+		if self.nama_rak.get() in kumpulan_rak:
+			Label(overlay, text=f"Rak dengan nama {self.nama_rak.get()} sudah ada!").pack()
+		else:
+			# ACTION
+			database.update({self.nama_rak.get():[]})
+			# GUI
+			Label(overlay, text=f"Rak dengan nama {self.nama_rak.get()} berhasil ditambahkan!").pack()
 	 
 class sub_rak(Frame):
 	# Constructor untuk class add_rak()
@@ -368,13 +375,46 @@ class sub_rak(Frame):
 
 		# ENTRY
 		self.nama_rak = StringVar()
-		self.jenis_rak = StringVar()
 		self.e1 = Entry(self, width="30", textvariable= self.nama_rak).grid(row=2, column=1, sticky = W, padx=0)
 
 		# BUTTON
 		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("rak_menu"), relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
-		Button(self, text="HAPUS", command=NONE, relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
+		Button(self, text="HAPUS", command=self.hapus_rak, relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
 
+	def hapus_rak(self):
+		
+		# GUI
+		global overlay_sub_rak
+		overlay_sub_rak = Toplevel(self)
+		overlay_sub_rak.geometry("300x50")
+		# ACTION
+		kumpulan_rak = database.keys()
+		if self.nama_rak.get() in kumpulan_rak:
+			if len(database[self.nama_rak.get()]) != 0:
+
+				# GUI
+				overlay_sub_rak.title("Warning")
+				Label(overlay_sub_rak, text="Masih ada buku di rak, tetap lanjutkan?").pack()
+				Button(overlay_sub_rak, text="YES", command=self.popup).pack()
+			else:
+				# ACTION
+				database.pop(self.nama_rak.get())
+
+				# GUI
+				Label(overlay_sub_rak, text=f"Rak dengan nama {self.nama_rak.get()} berhasil dihapus").pack()
+		else:
+			Label(overlay_sub_rak, text=f"Tidak ditemukan rak dengan nama {self.nama_rak.get()}").pack()
+		
+	def popup(self):
+		# Action
+		database.pop(self.nama_rak.get())
+
+		# GUI
+		overlay_sub_rak.destroy()
+		overlay= Toplevel(self)
+		overlay.geometry("300x50")
+		Label(overlay, text=f"Rak dengan nama {self.nama_rak.get()} berhasil dihapus").pack()
+		
 class sub_buku(Frame):
 	# Constructor untuk class add_rak()
 	def __init__(self, master, controller):
