@@ -75,8 +75,6 @@ class Home_Front(Frame):
 		Button(self.frame_TOP, text="HOME", fg="black", font=("Comic Sans MS", 10),bg="#F6D12E").pack(side= LEFT)
 		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="LOG IN",command=lambda: self.controller.show_frame("login"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= RIGHT)
-		# Jika Button ditekan akan mengarahkan pada halaman BUKU
-		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		
 		Label(self.frame_CENTER, text="E-PERPUS", font=("Metropolis Black", 20 ), bg="#FF9F00", fg='white', pady=20).pack(side=TOP,fill=BOTH)
 		Label(self.frame_CENTER, text="").pack()
@@ -156,10 +154,8 @@ class Home(Frame):
 		Button(self.frame_TOP, text="HOME", fg="black", font=("Comic Sans MS", 10),bg="#F6D12E").pack(side= LEFT)
 		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= LEFT)
-		# Jika Button ditekan akan mengarahkan pada halaman BUKU
-		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= LEFT)
-		Button(self.frame_TOP, text="Log Out", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= RIGHT)
+		Button(self.frame_TOP, text="LOG OUT", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= RIGHT, padx=18)
 		
 		Label(self.frame_CENTER, text="E-PERPUS", font=("Metropolis Black", 20 ), bg="#FF9F00", fg='white', pady=20).pack(side=TOP,fill=BOTH)
 		Label(self.frame_CENTER, text="").pack()
@@ -192,10 +188,8 @@ class rak_menu(Frame):
 		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
 		Button(self.frame_TOP, text="RAK",command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
-		# Jika Button ditekan akan mengarahkan pada halaman BUKU
-		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		# Jika ditekan akan menjalankan method list_buku()
+		Button(self.frame_TOP_Left, text="LOG OUT", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3, sticky=E)
 		
 		# LABEL
 		Label(self, text="Menu Rak", font=("Metropolis Black", 20)).grid(row=1,column=0,sticky=E, padx=120, pady=20)
@@ -234,7 +228,7 @@ class buku_menu(Frame):
 		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
 		# Jika Button ditekan akan mengarahkan pada halaman BUKU
 		Button(self.frame_TOP, text="BUKU", command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		# Jika ditekan akan menjalankan method list_buku()
+		Button(self.frame_TOP_Left, text="LOG OUT", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=5, sticky=E, padx=18)
 		
 		# LABEL
 		Label(self, text="Menu Buku", font=("Metropolis Black", 20)).grid(row=1,column=0,sticky=E, padx=120, pady=20)
@@ -270,10 +264,7 @@ class add_rak(Frame):
 		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
 		Button(self.frame_TOP, text="RAK",command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
-		# Jika Button ditekan akan mengarahkan pada halaman BUKU
-		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		# Jika ditekan akan menjalankan method list_buku()
 		
 		# LABEL
 		Label(self, text="Tambahkan Rak", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
@@ -313,10 +304,7 @@ class sub_rak(Frame):
 		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
 		Button(self.frame_TOP, text="RAK",command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
-		# Jika Button ditekan akan mengarahkan pada halaman BUKU
-		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		# Jika ditekan akan menjalankan method list_buku()
 		
 		# LABEL
 		Label(self, text="Hapus Rak", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
@@ -359,7 +347,6 @@ class sub_buku(Frame):
 		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
 		# Jika Button ditekan akan mengarahkan pada halaman BUKU
 		Button(self.frame_TOP, text="BUKU", command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		# Jika ditekan akan menjalankan method list_buku()
 		
 		# LABEL
 		Label(self, text="Pinjamkan Buku", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
@@ -389,20 +376,13 @@ class add_buku(Frame):
 		# Membuat Frame
 		self.frame_TOP = Frame(self)
 		self.frame_TOP.grid(row=0, sticky=W)
-		self.frame_TOP_Left = Frame(self)
-		self.frame_TOP_Left.grid(row=0, sticky=E)
 
 		# Kumpulan Button, Entry, dan Label
 
 		# Navigasi
-		# Jika Buton ditekan akan mengarahkan pada halaman RAK
-		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
-		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
-		# Jika Button ditekan akan mengarahkan pada halaman BUKU
 		Button(self.frame_TOP, text="BUKU", command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		# Jika ditekan akan menjalankan method list_buku()
 
 		# Label
 		Label(self, text="Tambahkan Buku", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, pady=20, padx=60)
@@ -412,6 +392,7 @@ class add_buku(Frame):
 		Label(self, text="PENGARANG	").grid(row=5, sticky=W, padx=20)
 		Label(self, text="PENERBIT	").grid(row=6, sticky=W, padx=20)
 		Label(self, text="JENIS BUKU	").grid(row=7, sticky=W, padx=20)
+		Label(self, text="STOK	").grid(row=8, sticky=W, padx=20)
 		Label(self, text="").grid(row=9, sticky=W, padx=0)
 
 
@@ -422,6 +403,7 @@ class add_buku(Frame):
 		self.pengarang_buku = StringVar()
 		self.penerbit = StringVar()
 		self.jenis_buku = StringVar()
+		self.stok = StringVar()
 	
 		self.e1 = Entry(self, width="30", textvariable=self.nama_rak).grid(row=2, column=1, sticky=W, padx=0)
 		self.e2 = Entry(self, width="30", textvariable=self.nama_buku).grid(row=3, column=1, sticky=W, padx=0)
@@ -429,6 +411,7 @@ class add_buku(Frame):
 		self.e4 = Entry(self, width="30", textvariable=self.pengarang_buku).grid(row=5, column=1, sticky=W, padx=0)
 		self.e5 = Entry(self, width="30", textvariable=self.penerbit).grid(row=6, column=1, sticky=W, padx=0)
 		self.e6 = Entry(self, width="30", textvariable=self.jenis_buku).grid(row=7, column=1, sticky=W, padx=0)
+		self.e7 = Entry(self, width="30", textvariable=self.stok).grid(row=8, column=1, sticky=W, padx=0)
 
 		# Button
 		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=10, column=0, sticky=W, padx=20, pady=20)
