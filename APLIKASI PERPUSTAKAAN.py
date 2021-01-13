@@ -3,6 +3,24 @@ from tkinter import *
 
 database = {"Example":["Contoh Buku","2001","Jane Doe","DC/MCU","Fiksi","20"],}
 
+def status():
+	# GUI
+	overlay = Toplevel()
+	overlay.geometry("300x300")
+	Label(overlay, text="\nSTATUS", font=("Metropolis Black", 15)).pack()
+
+	# ACTION
+	status_data = []
+	for x,y in database.items():
+		status_data.append(f"___{x}___")
+		for i in range(len(y)):
+			if i % 6 == 0:
+				status_data.append(f"{y[i]}, stock: {y[i+5]}")
+	result_status_data = "\n".join(status_data)
+	Label(overlay, text=result_status_data).pack()
+		
+
+
 class Underground(Tk):
 	# Implementasi ini saya dapatkan dari internet dengan keyword "Tkinter multiple frame"
 	# diambil dari beberapa tautan, di antaranya
@@ -94,22 +112,18 @@ class Home_Front(Frame):
 			overlay.geometry("300x50")
 			overlay.title("Error Message")
 		else:
-			# Mencetak hasil pencarian
 			Label(overlay, text="\nHasil Pencarian Buku:", font=("Metropolis Black", 15)).pack()
-			try:
-				for x,y in database.items():
-					for i in range(99):
-						if y[i] == self.nama.get():
-							template = f"Nama Buku: \nTahun Terbit: \nPengarang: \nPenerbit: \nJenis Buku: \nStok: "
-							result =  f"{y[i]}\n{y[i+1]}\n{y[i+2]}\n{y[i+3]}\n{y[i+4]}\n{y[i+5]}"
-							Message(overlay, text=template).pack(side=LEFT, padx =20)
-							Message(overlay, text=result).pack(side=LEFT, padx=5)
-							overlay.title("Hasil Pencarian")
-							break
-			except IndexError:
+			for x,y in database.items():
+				for i in range(len(y)):
+					if y[i] == self.nama.get():
+						template = f"Nama Buku\nTahun Terbit\nPengarang\nPenerbit\nJenis Buku\nStok"
+						result =  f": {y[i]}\n: {y[i+1]}\n: {y[i+2]}\n: {y[i+3]}\n: {y[i+4]}\n: {y[i+5]}"
+						Message(overlay, text=template).pack(side=LEFT, padx =20)
+						Message(overlay, text=result).pack(side=LEFT, padx=5)
+						break
 				result = "Buku tidak ditemukan!"
 				Label(overlay, text=result).pack()
-				overlay.title("Hasil Pencarian")
+			overlay.title("Hasil Pencarian")
 			overlay.geometry("300x300")
 				
 class login(Frame):
@@ -185,7 +199,7 @@ class Home(Frame):
 		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= LEFT)
 		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= LEFT)
-		Button(self.frame_TOP, text="STATUS", command=NONE, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= LEFT)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= LEFT)
 		Button(self.frame_TOP, text="LOG OUT", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= RIGHT, padx=18)
 		
 		Label(self.frame_CENTER, text="E-PERPUS", font=("Metropolis Black", 20 ), bg="#FF9F00", fg='white', pady=20).pack(side=TOP,fill=BOTH)
@@ -201,22 +215,18 @@ class Home(Frame):
 			overlay.geometry("300x50")
 			overlay.title("Error Message")
 		else:
-			# Mencetak hasil pencarian
 			Label(overlay, text="\nHasil Pencarian Buku:", font=("Metropolis Black", 15)).pack()
-			try:
-				for x,y in database.items():
-					for i in range(99):
-						if y[i] == self.nama.get():
-							template = f"Nama Buku: \nTahun Terbit: \nPengarang: \nPenerbit: \nJenis Buku: \nStok: "
-							result =  f"{y[i]}\n{y[i+1]}\n{y[i+2]}\n{y[i+3]}\n{y[i+4]}\n{y[i+5]}"
-							Message(overlay, text=template).pack(side=LEFT, padx =20)
-							Message(overlay, text=result).pack(side=LEFT, padx=5)
-							overlay.title("Hasil Pencarian")
-							break
-			except IndexError:
+			for x,y in database.items():
+				for i in range(len(y)):
+					if y[i] == self.nama.get():
+						template = f"Nama Buku\nTahun Terbit\nPengarang\nPenerbit\nJenis Buku\nStok"
+						result =  f": {y[i]}\n: {y[i+1]}\n: {y[i+2]}\n: {y[i+3]}\n: {y[i+4]}\n: {y[i+5]}"
+						Message(overlay, text=template).pack(side=LEFT, padx =20)
+						Message(overlay, text=result).pack(side=LEFT, padx=5)
+						break
 				result = "Buku tidak ditemukan!"
 				Label(overlay, text=result).pack()
-				overlay.title("Hasil Pencarian")
+			overlay.title("Hasil Pencarian")
 			overlay.geometry("300x300")
 
 class rak_menu(Frame):
@@ -245,7 +255,7 @@ class rak_menu(Frame):
 		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
 		Button(self.frame_TOP, text="RAK",command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
 		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		Button(self.frame_TOP, text="STATUS", command=NONE, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
 		Button(self.frame_TOP_Left, text="LOG OUT", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=4, sticky=E)
 		
 		# LABEL
@@ -282,7 +292,7 @@ class buku_menu(Frame):
 		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
 		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
 		Button(self.frame_TOP, text="BUKU", command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		Button(self.frame_TOP, text="STATUS", command=NONE, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
 		Button(self.frame_TOP_Left, text="LOG OUT", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=5, sticky=E, padx=18)
 		
 		# LABEL
@@ -314,7 +324,7 @@ class add_rak(Frame):
 		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
 		Button(self.frame_TOP, text="RAK",command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
 		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		Button(self.frame_TOP, text="STATUS", command=NONE, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
 		
 		# LABEL
 		Label(self, text="Tambahkan Rak", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
@@ -367,7 +377,7 @@ class sub_rak(Frame):
 		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
 		Button(self.frame_TOP, text="RAK",command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
 		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		Button(self.frame_TOP, text="STATUS", command=NONE, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
 
 		# LABEL
 		Label(self, text="Hapus Rak", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
@@ -440,7 +450,7 @@ class sub_buku(Frame):
 		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
 		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
 		Button(self.frame_TOP, text="BUKU", command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		Button(self.frame_TOP, text="STATUS", command=NONE, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
 		
 		# LABEL
 		Label(self, text="Pinjamkan Buku", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
@@ -448,14 +458,32 @@ class sub_buku(Frame):
 		Label(self, text="JUMLAH	").grid(row=3, sticky=W, padx= 20)	
 
 		# ENTRY
-		self.nama_rak = StringVar()
+		self.nama_buku = StringVar()
 		self.jumlah = StringVar()
-		self.e1 = Entry(self, width="30", textvariable= self.nama_rak).grid(row=2, column=1, sticky = W, padx=0)
+		self.e1 = Entry(self, width="30", textvariable= self.nama_buku).grid(row=2, column=1, sticky = W, padx=0)
 		self.e2 = Entry(self, width="30", textvariable= self.jumlah).grid(row=3, column=1, sticky = W, padx=0)
 
 		# BUTTON
 		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
-		Button(self, text="PINJAMKAN", command=NONE, relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
+		Button(self, text="PINJAMKAN", command=self.pinjamkan_buku, relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
+
+	def pinjamkan_buku(self):
+		# GUI
+		overlay = Toplevel(self)
+		overlay.geometry("300x50")
+
+		# ACTION
+		for x,y in database.items():
+			for i in range(len(y)):
+				if self.nama_buku.get() == y[i]:
+					if int(y[i+5]) < int(self.jumlah.get()):
+						Label(overlay, text="Jumlah buku kurang dari permintaan!").pack()
+						break
+					else:
+						y[i+5] = str(int(y[i+5]) - int(self.jumlah.get()))
+						Label(overlay, text=f"Buku dengan nama {self.nama_buku.get()}\ndipinjamkan sebanyak {self.jumlah.get()}").pack()
+						break
+			Label(overlay, text=f"Buku dengan nama {self.nama_buku.get()} tidak ada!").pack()
 
 class add_buku(Frame):
 	# Constructor __init__ untuk class add_buku
@@ -477,7 +505,7 @@ class add_buku(Frame):
 		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
 		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
 		Button(self.frame_TOP, text="BUKU", command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		Button(self.frame_TOP, text="STATUS", command=NONE, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
 		
 		# Label
 		Label(self, text="Tambahkan Buku", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, pady=20, padx=60)
@@ -489,7 +517,6 @@ class add_buku(Frame):
 		Label(self, text="JENIS BUKU	").grid(row=7, sticky=W, padx=20)
 		Label(self, text="STOK	").grid(row=8, sticky=W, padx=20)
 		Label(self, text="").grid(row=9, sticky=W, padx=0)
-
 
 		# Entry
 		self.nama_rak = StringVar()
@@ -510,7 +537,28 @@ class add_buku(Frame):
 
 		# Button
 		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=10, column=0, sticky=W, padx=20, pady=20)
-		Button(self, text="TAMBAHKAN", command=NONE, relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=10, column=1, sticky=W, padx=20, pady=20)
+		Button(self, text="TAMBAHKAN", command=self.add_buku, relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=10, column=1, sticky=W, padx=20, pady=20)
+	
+	def add_buku(self):
+		# GUI
+		overlay = Toplevel(self)
+		overlay.geometry("300x50")
+
+		# VARIABEL
+		kumpulan_rak = database.keys()
+		template = [self.nama_buku.get(),self.tahun_terbit.get(),self.pengarang_buku.get(),self.penerbit.get(),self.jenis_buku.get(),self.stok.get()]
+		
+		# ACTION
+		if self.nama_rak.get() in kumpulan_rak:
+			for i in template:
+				database[self.nama_rak.get()].append(i)
+				# GUI
+			Label(overlay, text=f"Buku dengan nama {self.nama_buku.get()}\nberhasil ditambahkan pada rak {self.nama_rak.get()}").pack()
+			print(database)
+		else:
+			database.update({self.nama_rak.get():template})
+			# GUI
+			Label(overlay, text=f"Buku dengan nama {self.nama_buku.get()}\nberhasil ditambahkan pada rak {self.nama_rak.get()}").pack()
 
 if __name__ == '__main__':
 	app = Underground()
