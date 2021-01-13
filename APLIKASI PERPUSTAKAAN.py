@@ -19,8 +19,6 @@ def status():
 	result_status_data = "\n".join(status_data)
 	Label(overlay, text=result_status_data).pack()
 		
-
-
 class Underground(Tk):
 	# Implementasi ini saya dapatkan dari internet dengan keyword "Tkinter multiple frame"
 	# diambil dari beberapa tautan, di antaranya
@@ -177,12 +175,10 @@ class Home(Frame):
 	def __init__(self, master, controller):
 		self.controller = controller  
 		Frame.__init__(self, master)
-		# menjalankan method make_widget()
 		self.make_widget()
 
 	# method make_widget
 	def make_widget(self):
-		# variabel yang isinya diperoleh dari isian Entry
 		self.nama = StringVar(value="Masukkan nama buku...")
 
 		# Membuat Frame
@@ -194,9 +190,7 @@ class Home(Frame):
 		# Kumpulan Button, Entry, dan Label
 
 		# Navigasi
-		# Jika Buton ditekan akan mengarahkan pada halaman RAK
 		Button(self.frame_TOP, text="HOME", fg="black", font=("Comic Sans MS", 10),bg="#F6D12E").pack(side= LEFT)
-		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= LEFT)
 		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= LEFT)
 		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= LEFT)
@@ -205,7 +199,6 @@ class Home(Frame):
 		Label(self.frame_CENTER, text="E-PERPUS", font=("Metropolis Black", 20 ), bg="#FF9F00", fg='white', pady=20).pack(side=TOP,fill=BOTH)
 		Label(self.frame_CENTER, text="").pack()
 		Entry(self.frame_CENTER, textvariable = self.nama, width= 30).pack(side=TOP, fill=BOTH, expand=YES, padx=20)
-		#Jika ditekan akan menjalankan method cari_buku()
 		Button(self.frame_CENTER, text="CARI BUKU", width=10, command=self.cari_buku, relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").pack(side=TOP, padx=2, pady=10)
 	
 	def cari_buku(self):
@@ -235,11 +228,8 @@ class rak_menu(Frame):
 		self.controller = controller
 		self.master = master
 		Frame.__init__(self, master)
-
-		# variabel privat
 		self.make_widget()
 
-	# Method Make_widget()
 	def make_widget(self):
 		# Membuat Frame
 		self.frame_TOP = Frame(self)
@@ -250,8 +240,6 @@ class rak_menu(Frame):
 		# Kumpulan Button, Entry, dan Label
 
 		# Navigasi
-		# Jika Buton ditekan akan mengarahkan pada halaman RAK
-		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
 		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
 		Button(self.frame_TOP, text="RAK",command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
 		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
@@ -273,11 +261,8 @@ class buku_menu(Frame):
 		self.controller = controller
 		self.master = master
 		Frame.__init__(self, master)
-
-		# variabel privat
 		self.make_widget()
 
-	# Method Make_widget()
 	def make_widget(self):
 		# Membuat Frame
 		self.frame_TOP = Frame(self)
@@ -288,7 +273,6 @@ class buku_menu(Frame):
 		# Kumpulan Button, Entry, dan Label
 
 		# Navigasi
-		# Jika Buton ditekan akan mengarahkan pada halaman RAK
 		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
 		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
 		Button(self.frame_TOP, text="BUKU", command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
@@ -359,11 +343,8 @@ class sub_rak(Frame):
 		self.controller = controller
 		self.master = master
 		Frame.__init__(self, master)
-
-		# variabel privat
 		self.make_widget()
 
-	# Method Make_widget()
 	def make_widget(self):
 		# Membuat Frame
 		self.frame_TOP = Frame(self)
@@ -431,11 +412,8 @@ class sub_buku(Frame):
 		self.controller = controller
 		self.master = master
 		Frame.__init__(self, master)
-
-		# variabel privat
 		self.make_widget()
 
-	# Method Make_widget()
 	def make_widget(self):
 		# Membuat Frame
 		self.frame_TOP = Frame(self)
@@ -446,7 +424,6 @@ class sub_buku(Frame):
 		# Kumpulan Button, Entry, dan Label
 
 		# Navigasi
-		# Jika Buton ditekan akan mengarahkan pada halaman RAK
 		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
 		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
 		Button(self.frame_TOP, text="BUKU", command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
@@ -562,7 +539,7 @@ class add_buku(Frame):
 
 if __name__ == '__main__':
 	app = Underground()
-	app.title('APLIKASI PERPUSTAKAAN')		# memberi judul
-	app.wm_geometry("400x340")			# mengatur luas
-	app.configure(bg ="#CB0B0B")		# mengatur warna backgrund
+	app.title('APLIKASI PERPUSTAKAAN')	
+	app.wm_geometry("400x340")	
+	app.configure(bg ="#CB0B0B")	
 	app.mainloop()
