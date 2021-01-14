@@ -142,6 +142,7 @@ class Home_Front(Frame):
 			overlay.title("Error Message")
 		else:
 			Label(overlay, text="\nHasil Pencarian Buku:", font=("Metropolis Black", 15)).pack()
+			config = 0
 			for x,y in database.items():
 				for i in range(len(y)):
 					if y[i] == self.nama.get():
@@ -149,9 +150,11 @@ class Home_Front(Frame):
 						result =  f": {y[i]}\n: {y[i+1]}\n: {y[i+2]}\n: {y[i+3]}\n: {y[i+4]}\n: {y[i+5]}"
 						Message(overlay, text=template).pack(side=LEFT, padx =20)
 						Message(overlay, text=result).pack(side=LEFT, padx=5)
+						config = 1
 						break
-			result = "Buku tidak ditemukan!"
-			Label(overlay, text=result).pack()
+			if config == 0:
+				result = "Buku tidak ditemukan!"
+				Label(overlay, text=result).pack()
 			overlay.title("Hasil Pencarian")
 			overlay.geometry("300x300")
 				
@@ -239,6 +242,7 @@ class Home(Frame):
 			overlay.title("Error Message")
 		else:
 			Label(overlay, text="\nHasil Pencarian Buku:", font=("Metropolis Black", 15)).pack()
+			config = 0
 			for x,y in database.items():
 				for i in range(len(y)):
 					if y[i] == self.nama.get():
@@ -246,7 +250,9 @@ class Home(Frame):
 						result =  f": {y[i]}\n: {y[i+1]}\n: {y[i+2]}\n: {y[i+3]}\n: {y[i+4]}\n: {y[i+5]}"
 						Message(overlay, text=template).pack(side=LEFT, padx =20)
 						Message(overlay, text=result).pack(side=LEFT, padx=5)
+						config = 1
 						break
+			if config == 0:
 				result = "Buku tidak ditemukan!"
 				Label(overlay, text=result).pack()
 			overlay.title("Hasil Pencarian")
@@ -343,7 +349,7 @@ class add_rak(Frame):
 		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=3)
 		
 		# LABEL
-		Label(self, text="Tambahkan Rak", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
+		Label(self, text="   Tambahkan Rak", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
 		Label(self, text="NAMA RAK	").grid(row=2, sticky=W, padx= 20)
 
 		# ENTRY
@@ -393,7 +399,7 @@ class sub_rak(Frame):
 		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=3)
 
 		# LABEL
-		Label(self, text="Hapus Rak", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
+		Label(self, text="        HAPUS RAK", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
 		Label(self, text="NAMA RAK	").grid(row=2, column=0, sticky=W, padx= 20)
 
 		# ENTRY
@@ -462,7 +468,7 @@ class sub_buku(Frame):
 		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=3)
 		
 		# LABEL
-		Label(self, text="Pinjamkan Buku", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
+		Label(self, text="  Pinjamkan Buku", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
 		Label(self, text="NAMA BUKU	").grid(row=2, sticky=W, padx= 20)
 		Label(self, text="JUMLAH	").grid(row=3, sticky=W, padx= 20)	
 
@@ -482,16 +488,20 @@ class sub_buku(Frame):
 		overlay.geometry("300x50")
 
 		# ACTION
+		config = 0
 		for x,y in database.items():
 			for i in range(len(y)):
 				if self.nama_buku.get() == y[i]:
 					if int(y[i+5]) < int(self.jumlah.get()):
 						Label(overlay, text="Jumlah buku kurang dari permintaan!").pack()
+						config = 1
 						break
 					else:
 						y[i+5] = str(int(y[i+5]) - int(self.jumlah.get()))
 						Label(overlay, text=f"Buku dengan nama {self.nama_buku.get()}\ndipinjamkan sebanyak {self.jumlah.get()}").pack()
+						config = 1
 						break
+		if config == 0:
 			Label(overlay, text=f"Buku dengan nama {self.nama_buku.get()} tidak ada!").pack()
 
 class add_buku(Frame):
@@ -517,7 +527,7 @@ class add_buku(Frame):
 		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=3)
 		
 		# Label
-		Label(self, text="Tambahkan Buku", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, pady=20, padx=60)
+		Label(self, text="  Tambahkan Buku", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, pady=20, padx=60)
 		Label(self, text="NAMA RAK	").grid(row=2, sticky=W, padx=20)
 		Label(self, text="NAMA BUKU	").grid(row=3, sticky=W, padx=20)
 		Label(self, text="TAHUN	").grid(row=4, sticky=W, padx=20)
@@ -590,21 +600,21 @@ class add_stok_buku(Frame):
 		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Metropolis", 10)).grid(row=0, column=1)
 		Button(self.frame_TOP, text="BUKU", command=None, bg="#DFE3EE",fg="black", font=("Metropolis", 10)).grid(row=0, column=2)
 		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=3)
-		
+
 		# LABEL
-		Label(self, text="Tambah Stok Buku", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
-		Label(self, text="NAMA BUKU	").grid(row=2, column=0, sticky=W, padx= 20)
-		Label(self, text="JUMLAH	").grid(row=3, column=0, sticky=W, padx= 20)	
+		Label(self, text="     TAMBAH STOK", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
+		Label(self, text="NAMA RAK	").grid(row=2, column=0, sticky=W, padx= 20)
+		Label(self, text="JUMLAH	").grid(row=3, column=0, sticky=W, padx= 20)
 
 		# ENTRY
 		self.nama_buku = StringVar()
 		self.jumlah = StringVar()
-		self.e1 = Entry(self, width="30", textvariable= self.nama_buku).grid(row=2, column=1,sticky = W)
-		self.e2 = Entry(self, width="30", textvariable= self.jumlah).grid(row=3, column=1,sticky = W)
+		self.e1 = Entry(self, width="30", textvariable= self.nama_buku).grid(row=2, column=0, sticky = E, columnspan=2)
+		self.e2 = Entry(self, width="30", textvariable= self.jumlah).grid(row=3, column=0, sticky = E, columnspan=2)
 
 		# BUTTON
 		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
-		Button(self, text="TAMBAHKAN", command=self.pinjamkan_buku, relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
+		Button(self, text="TAMBAH", command=self.pinjamkan_buku, relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
 
 	def pinjamkan_buku(self):
 		# GUI
@@ -612,12 +622,15 @@ class add_stok_buku(Frame):
 		overlay.geometry("300x50")
 
 		# ACTION
+		config = 0
 		for x,y in database.items():
 			for i in range(len(y)):
 				if self.nama_buku.get() == y[i]:
 					y[i+5] = str(int(y[i+5]) + int(self.jumlah.get()))
 					Label(overlay, text=f"Buku dengan nama {self.nama_buku.get()}\nditambahkan sebanyak {self.jumlah.get()}").pack()
+					config = 1
 					break
+		if config == 0:	
 			Label(overlay, text=f"Buku dengan nama {self.nama_buku.get()} tidak ada!").pack()
 
 if __name__ == '__main__':
