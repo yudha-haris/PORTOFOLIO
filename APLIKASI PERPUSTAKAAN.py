@@ -10,6 +10,7 @@ def load_file():
 	result = text_file.read()
 	global database
 	database = eval(result)
+	overlay_status.destroy()
 
 def save_file():
 	file_name = asksaveasfilename(filetypes=[("All files", "*")])
@@ -17,17 +18,20 @@ def save_file():
 		return
 		
 	with open(file_name, "w") as output_file:
-		output_file.write(str(database))  
+		output_file.write(str(database))
+		overlay_status.destroy()  
 
 def status():
 	# GUI
-	overlay = Toplevel()
-	overlay.geometry("300x300")
-	frame_BOT = Frame(overlay)
+	global overlay_status
+	overlay_status = Toplevel()
+	overlay_status.geometry("300x300")
+	frame_BOT = Frame(overlay_status)
 	frame_BOT.pack(side=BOTTOM)
-	Label(overlay, text="\nSTATUS", font=("Metropolis Black", 15)).pack()
-	Button(frame_BOT, text="SAVE", command=save_file).pack(side=LEFT)
-	Button(frame_BOT, text="LOAD", command=load_file).pack(side=LEFT)
+	Label(overlay_status, text="\nSTATUS", font=("Metropolis Black", 15)).pack()
+	Button(frame_BOT, text="SAVE", command=save_file).pack(side=LEFT, pady=10)
+	Label(frame_BOT, text="	").pack(side=LEFT)
+	Button(frame_BOT, text="LOAD", command=load_file).pack(side=LEFT, pady=10)
 
 	# ACTION
 	status_data = []
@@ -37,7 +41,7 @@ def status():
 			if i % 6 == 0:
 				status_data.append(f"{y[i]}, stock: {y[i+5]}")
 	result_status_data = "\n".join(status_data)
-	Label(overlay, text=result_status_data).pack() 
+	Label(overlay_status, text=result_status_data).pack() 
 
 database = {}
 
