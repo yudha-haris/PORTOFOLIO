@@ -1,13 +1,17 @@
 import tkinter
 from tkinter import *
 
-database = {"Example":["Contoh Buku","2001","Jane Doe","DC/MCU","Fiksi","20"],}
+database = {}
 
 def status():
 	# GUI
 	overlay = Toplevel()
 	overlay.geometry("300x300")
+	frame_BOT = Frame(overlay)
+	frame_BOT.pack(side=BOTTOM)
 	Label(overlay, text="\nSTATUS", font=("Metropolis Black", 15)).pack()
+	Button(frame_BOT, text="SAVE").pack(side=LEFT)
+	Button(frame_BOT, text="LOAD").pack(side=LEFT)
 
 	# ACTION
 	status_data = []
@@ -121,8 +125,8 @@ class Home_Front(Frame):
 						Message(overlay, text=template).pack(side=LEFT, padx =20)
 						Message(overlay, text=result).pack(side=LEFT, padx=5)
 						break
-				result = "Buku tidak ditemukan!"
-				Label(overlay, text=result).pack()
+			result = "Buku tidak ditemukan!"
+			Label(overlay, text=result).pack()
 			overlay.title("Hasil Pencarian")
 			overlay.geometry("300x300")
 				
@@ -289,6 +293,8 @@ class buku_menu(Frame):
 		 column=0, padx= 20, pady=2, rowspan=2)
 		Button(self, text="\nPINJAMKAN BUKU\n", command=lambda: self.controller.show_frame("sub_buku"), relief=FLAT, font=("Metropolis", 12, "bold"), bg="blue", fg="white").grid(row=4,
 		 column=0, padx= 20, pady=10, rowspan=2)
+		Button(self, text="\nTAMBAH STOK BUKU\n", command=lambda: self.controller.show_frame("add_stok_buku"), relief=FLAT, font=("Metropolis", 12, "bold"), bg="blue", fg="white").grid(row=6,
+		 column=0, padx= 20, pady=2, rowspan=2)
 
 class add_rak(Frame):
 	def __init__(self, master, controller):
@@ -587,7 +593,7 @@ class add_stok_buku(Frame):
 				if self.nama_buku.get() == y[i]:
 					y[i+5] = str(int(y[i+5]) + int(self.jumlah.get()))
 					Label(overlay, text=f"Buku dengan nama {self.nama_buku.get()}\nditambahkan sebanyak {self.jumlah.get()}").pack()
-						break
+					break
 			Label(overlay, text=f"Buku dengan nama {self.nama_buku.get()} tidak ada!").pack()
 
 if __name__ == '__main__':
