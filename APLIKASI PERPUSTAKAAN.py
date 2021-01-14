@@ -40,7 +40,10 @@ def status():
 		for i in range(len(y)):
 			if i % 6 == 0:
 				status_data.append(f"{y[i]}, stock: {y[i+5]}")
-	result_status_data = "\n".join(status_data)
+	if status_data == []:
+		result_status_data = "Belum ada buku maupun rak!"
+	else:
+		result_status_data = "\n".join(status_data)
 	Label(overlay_status, text=result_status_data).pack() 
 
 database = {}
