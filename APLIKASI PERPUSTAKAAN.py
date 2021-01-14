@@ -43,6 +43,7 @@ class Underground(Tk):
 		self.frames["login"] = login(master=container, controller=self)
 		self.frames["Home_Front"] = Home_Front(master=container, controller=self)
 		self.frames["add_buku"] = add_buku(master=container, controller=self)
+		self.frames["add_stok_buku"] = add_stok_buku(master=container, controller=self)
 		self.frames["sub_buku"] = sub_buku(master=container, controller=self)
 		self.frames["add_rak"] = add_rak(master=container, controller=self)
 		self.frames["sub_rak"] = sub_rak(master=container, controller=self)
@@ -53,6 +54,7 @@ class Underground(Tk):
 		self.frames["login"].grid(row=0, column=0, sticky="NSEW")
 		self.frames["Home_Front"].grid(row=0, column=0, sticky="NSEW")
 		self.frames["add_buku"].grid(row=0, column=0, sticky="NSEW")
+		self.frames["add_stok_buku"].grid(row=0, column=0, sticky="NSEW")
 		self.frames["sub_buku"].grid(row=0, column=0, sticky="NSEW")
 		self.frames["add_rak"].grid(row=0, column=0, sticky="NSEW")
 		self.frames["sub_rak"].grid(row=0, column=0, sticky="NSEW")
@@ -536,6 +538,57 @@ class add_buku(Frame):
 			database.update({self.nama_rak.get():template})
 			# GUI
 			Label(overlay, text=f"Buku dengan nama {self.nama_buku.get()}\nberhasil ditambahkan pada rak {self.nama_rak.get()}").pack()
+
+class add_stok_buku(Frame):
+	def __init__(self, master, controller):
+		self.controller = controller
+		self.master = master
+		Frame.__init__(self, master)
+		self.make_widget()
+
+	def make_widget(self):
+		# Membuat Frame
+		self.frame_TOP = Frame(self)
+		self.frame_TOP.grid(row=0, sticky=W)
+		self.frame_TOP_Left = Frame(self)
+		self.frame_TOP_Left.grid(row=0, sticky=E)
+
+		# Kumpulan Button, Entry, dan Label
+
+		# Navigasi
+		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
+		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
+		Button(self.frame_TOP, text="BUKU", command=None, bg="#F6D12E",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
+		
+		# LABEL
+		Label(self, text="Tambah Stok Buku", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
+		Label(self, text="NAMA BUKU	").grid(row=2, sticky=W, padx= 20)
+		Label(self, text="JUMLAH	").grid(row=3, sticky=W, padx= 20)	
+
+		# ENTRY
+		self.nama_buku = StringVar()
+		self.jumlah = StringVar()
+		self.e1 = Entry(self, width="30", textvariable= self.nama_buku).grid(row=2, column=1, sticky = W, padx=0)
+		self.e2 = Entry(self, width="30", textvariable= self.jumlah).grid(row=3, column=1, sticky = W, padx=0)
+
+		# BUTTON
+		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
+		Button(self, text="TAMBAHKAN", command=self.pinjamkan_buku, relief=FLAT, font=("Comic Sans MS", 10), bg="#B81D13", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
+
+	def pinjamkan_buku(self):
+		# GUI
+		overlay = Toplevel(self)
+		overlay.geometry("300x50")
+
+		# ACTION
+		for x,y in database.items():
+			for i in range(len(y)):
+				if self.nama_buku.get() == y[i]:
+					y[i+5] = str(int(y[i+5]) + int(self.jumlah.get()))
+					Label(overlay, text=f"Buku dengan nama {self.nama_buku.get()}\nditambahkan sebanyak {self.jumlah.get()}").pack()
+						break
+			Label(overlay, text=f"Buku dengan nama {self.nama_buku.get()} tidak ada!").pack()
 
 if __name__ == '__main__':
 	app = Underground()
