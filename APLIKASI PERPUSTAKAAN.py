@@ -115,15 +115,15 @@ class Home_Front(Frame):
 
 		# Navigasi
 		# Jika Buton ditekan akan mengarahkan pada halaman RAK
-		Button(self.frame_TOP, text="HOME", fg="black", font=("Comic Sans MS", 10),bg="#DFE3EE").pack(side= LEFT)
+		Button(self.frame_TOP, text="HOME", fg="black", font=("Metropolis", 10),bg="#DFE3EE").pack(side= LEFT)
 		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
-		Button(self.frame_TOP, text="LOG IN",command=lambda: self.controller.show_frame("login"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= RIGHT, padx = 18)
+		Button(self.frame_TOP, text="LOG IN",command=lambda: self.controller.show_frame("login"), relief=FLAT, fg="black", font=("Metropolis", 10)).pack(side= RIGHT, padx = 18)
 		
 		Label(self.frame_CENTER, text="E-PERPUS", font=("Metropolis Black", 20 ), bg="#0E68CE", fg='white', pady=20).pack(side=TOP,fill=BOTH)
 		Label(self.frame_CENTER, text="").pack()
 		Entry(self.frame_CENTER, textvariable = self.nama, width= 30).pack(side=TOP, fill=BOTH, expand=YES, padx=20)
 		#Jika ditekan akan menjalankan method cari_buku()
-		Button(self.frame_CENTER, text="CARI BUKU", width=10, command=self.cari_buku, relief=FLAT, font=("Comic Sans MS", 10), bg="#003B7A", fg="white").pack(side=TOP, padx=2, pady=10)
+		Button(self.frame_CENTER, text="CARI BUKU", width=10, command=self.cari_buku, relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").pack(side=TOP, padx=2, pady=10)
 	
 	def cari_buku(self):
 		# menampilkan pada jendela baru
@@ -171,7 +171,7 @@ class login(Frame):
 		# Navigasi
 		# Jika Buton ditekan akan mengarahkan pada halaman RAK
 		# lambda: self.controller.show_frame adalah perintah untuk menjalankan method showfrane 
-		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
+		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=0)
 		# LABEL
 		Label(self, text="LOG IN Admin", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
 		Label(self, text="Username	").grid(row=2, sticky=W, padx= 20)
@@ -184,8 +184,8 @@ class login(Frame):
 		self.e2 = Entry(self, width="30", textvariable= self.password).grid(row=3, column=0,sticky = E, columnspan=2)
 
 		# BUTTON
-		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, font=("Comic Sans MS", 10), bg="#003B7A", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
-		Button(self, text="LOG IN", command=self.login, relief=FLAT, font=("Comic Sans MS", 10), bg="#003B7A", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
+		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
+		Button(self, text="LOG IN", command=self.login, relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
 
 	def login(self):
 		if self.username.get() + self.password.get() == "adminadmin":
@@ -213,16 +213,16 @@ class Home(Frame):
 		# Kumpulan Button, Entry, dan Label
 
 		# Navigasi
-		Button(self.frame_TOP, text="HOME", fg="black", font=("Comic Sans MS", 10),bg="#DFE3EE").pack(side= LEFT)
-		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= LEFT)
-		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= LEFT)
-		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= LEFT)
-		Button(self.frame_TOP, text="LOG OUT", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).pack(side= RIGHT, padx=18)
+		Button(self.frame_TOP, text="HOME", fg="black", font=("Metropolis", 10),bg="#DFE3EE").pack(side= LEFT)
+		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"), relief=FLAT, fg="black", font=("Metropolis", 10)).pack(side= LEFT)
+		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Metropolis", 10)).pack(side= LEFT)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Metropolis", 10)).pack(side= LEFT)
+		Button(self.frame_TOP, text="LOG OUT", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Metropolis", 10)).pack(side= RIGHT, padx=18)
 		
 		Label(self.frame_CENTER, text="E-PERPUS", font=("Metropolis Black", 20 ), bg="#3B5998", fg='white', pady=20).pack(side=TOP,fill=BOTH)
 		Label(self.frame_CENTER, text="").pack()
 		Entry(self.frame_CENTER, textvariable = self.nama, width= 30).pack(side=TOP, fill=BOTH, expand=YES, padx=20)
-		Button(self.frame_CENTER, text="CARI BUKU", width=10, command=self.cari_buku, relief=FLAT, font=("Comic Sans MS", 10), bg="#003B7A", fg="white").pack(side=TOP, padx=2, pady=10)
+		Button(self.frame_CENTER, text="CARI BUKU", width=10, command=self.cari_buku, relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").pack(side=TOP, padx=2, pady=10)
 	
 	def cari_buku(self):
 		overlay = Toplevel(self)
@@ -263,11 +263,11 @@ class rak_menu(Frame):
 		# Kumpulan Button, Entry, dan Label
 
 		# Navigasi
-		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
-		Button(self.frame_TOP, text="RAK",command=None, bg="#DFE3EE",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
-		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
-		Button(self.frame_TOP_Left, text="LOG OUT", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=4, sticky=E)
+		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=0)
+		Button(self.frame_TOP, text="RAK",command=None, bg="#DFE3EE",fg="black", font=("Metropolis", 10)).grid(row=0, column=1)
+		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=2)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=3)
+		Button(self.frame_TOP_Left, text="LOG OUT", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=4, sticky=E)
 		
 		# LABEL
 		Label(self, text="Menu Rak", font=("Metropolis Black", 20)).grid(row=1,column=0,sticky=E, padx=120, pady=20)
@@ -296,11 +296,11 @@ class buku_menu(Frame):
 		# Kumpulan Button, Entry, dan Label
 
 		# Navigasi
-		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
-		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
-		Button(self.frame_TOP, text="BUKU", command=None, bg="#DFE3EE",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
-		Button(self.frame_TOP_Left, text="LOG OUT", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=5, sticky=E, padx=18)
+		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=0)
+		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Metropolis", 10)).grid(row=0, column=1)
+		Button(self.frame_TOP, text="BUKU", command=None, bg="#DFE3EE",fg="black", font=("Metropolis", 10)).grid(row=0, column=2)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=3)
+		Button(self.frame_TOP_Left, text="LOG OUT", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=5, sticky=E, padx=18)
 		
 		# LABEL
 		Label(self, text="Menu Buku", font=("Metropolis Black", 20)).grid(row=1,column=0,sticky=E, padx=120, pady=20)
@@ -330,10 +330,10 @@ class add_rak(Frame):
 		# Kumpulan Button, Entry, dan Label
 
 		# Navigasi
-		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
-		Button(self.frame_TOP, text="RAK",command=None, bg="#DFE3EE",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
-		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
+		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=0)
+		Button(self.frame_TOP, text="RAK",command=None, bg="#DFE3EE",fg="black", font=("Metropolis", 10)).grid(row=0, column=1)
+		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=2)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=3)
 		
 		# LABEL
 		Label(self, text="Tambahkan Rak", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
@@ -344,8 +344,8 @@ class add_rak(Frame):
 		self.e1 = Entry(self, width="30", textvariable= self.nama_rak).grid(row=2, column=0, sticky = E, columnspan=2)
 
 		# BUTTON
-		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("rak_menu"), relief=FLAT, font=("Comic Sans MS", 10), bg="#003B7A", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
-		Button(self, text="TAMBAHKAN", command=self.tambah_rak, relief=FLAT, font=("Comic Sans MS", 10), bg="#003B7A", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
+		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("rak_menu"), relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
+		Button(self, text="TAMBAHKAN", command=self.tambah_rak, relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
 
 	def tambah_rak(self):
 		# GUI
@@ -380,10 +380,10 @@ class sub_rak(Frame):
 		# Kumpulan Button, Entry, dan Label
 
 		# Navigasi
-		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
-		Button(self.frame_TOP, text="RAK",command=None, bg="#DFE3EE",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
-		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
+		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=0)
+		Button(self.frame_TOP, text="RAK",command=None, bg="#DFE3EE",fg="black", font=("Metropolis", 10)).grid(row=0, column=1)
+		Button(self.frame_TOP, text="BUKU", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=2)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=3)
 
 		# LABEL
 		Label(self, text="Hapus Rak", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
@@ -394,8 +394,8 @@ class sub_rak(Frame):
 		self.e1 = Entry(self, width="30", textvariable= self.nama_rak).grid(row=2, column=0, sticky = E, columnspan=2)
 
 		# BUTTON
-		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("rak_menu"), relief=FLAT, font=("Comic Sans MS", 10), bg="#003B7A", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
-		Button(self, text="HAPUS", command=self.hapus_rak, relief=FLAT, font=("Comic Sans MS", 10), bg="#003B7A", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
+		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("rak_menu"), relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
+		Button(self, text="HAPUS", command=self.hapus_rak, relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
 
 	def hapus_rak(self):
 		
@@ -449,10 +449,10 @@ class sub_buku(Frame):
 		# Kumpulan Button, Entry, dan Label
 
 		# Navigasi
-		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
-		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
-		Button(self.frame_TOP, text="BUKU", command=None, bg="#DFE3EE",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
+		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=0)
+		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Metropolis", 10)).grid(row=0, column=1)
+		Button(self.frame_TOP, text="BUKU", command=None, bg="#DFE3EE",fg="black", font=("Metropolis", 10)).grid(row=0, column=2)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=3)
 		
 		# LABEL
 		Label(self, text="Pinjamkan Buku", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
@@ -466,8 +466,8 @@ class sub_buku(Frame):
 		self.e2 = Entry(self, width="30", textvariable= self.jumlah).grid(row=3, column=0,sticky = E, columnspan=2)
 
 		# BUTTON
-		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, font=("Comic Sans MS", 10), bg="#003B7A", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
-		Button(self, text="PINJAMKAN", command=self.pinjamkan_buku, relief=FLAT, font=("Comic Sans MS", 10), bg="#003B7A", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
+		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
+		Button(self, text="PINJAMKAN", command=self.pinjamkan_buku, relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
 
 	def pinjamkan_buku(self):
 		# GUI
@@ -504,10 +504,10 @@ class add_buku(Frame):
 		# Kumpulan Button, Entry, dan Label
 
 		# Navigasi
-		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
-		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
-		Button(self.frame_TOP, text="BUKU", command=None, bg="#DFE3EE",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
+		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=0)
+		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Metropolis", 10)).grid(row=0, column=1)
+		Button(self.frame_TOP, text="BUKU", command=None, bg="#DFE3EE",fg="black", font=("Metropolis", 10)).grid(row=0, column=2)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=3)
 		
 		# Label
 		Label(self, text="Tambahkan Buku", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, pady=20, padx=60)
@@ -538,8 +538,8 @@ class add_buku(Frame):
 		self.e7 = Entry(self, width="30", textvariable=self.stok).grid(row=8, column=0,sticky = E, columnspan=2)
 
 		# Button
-		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, font=("Comic Sans MS", 10), bg="#003B7A", fg="white").grid(row=10, column=0, sticky=W, padx=20, pady=20)
-		Button(self, text="TAMBAHKAN", command=self.add_buku, relief=FLAT, font=("Comic Sans MS", 10), bg="#003B7A", fg="white").grid(row=10, column=1, sticky=W, padx=20, pady=20)
+		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=10, column=0, sticky=W, padx=20, pady=20)
+		Button(self, text="TAMBAHKAN", command=self.add_buku, relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=10, column=1, sticky=W, padx=20, pady=20)
 	
 	def add_buku(self):
 		# GUI
@@ -579,10 +579,10 @@ class add_stok_buku(Frame):
 		# Kumpulan Button, Entry, dan Label
 
 		# Navigasi
-		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=0)
-		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=1)
-		Button(self.frame_TOP, text="BUKU", command=None, bg="#DFE3EE",fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=2)
-		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Comic Sans MS", 10)).grid(row=0, column=3)
+		Button(self.frame_TOP, text="HOME", command=lambda: self.controller.show_frame("Home"), relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=0)
+		Button(self.frame_TOP, text="RAK",command=lambda: self.controller.show_frame("rak_menu"),relief=FLAT,fg="black", font=("Metropolis", 10)).grid(row=0, column=1)
+		Button(self.frame_TOP, text="BUKU", command=None, bg="#DFE3EE",fg="black", font=("Metropolis", 10)).grid(row=0, column=2)
+		Button(self.frame_TOP, text="STATUS", command=status, relief=FLAT, fg="black", font=("Metropolis", 10)).grid(row=0, column=3)
 		
 		# LABEL
 		Label(self, text="Tambah Stok Buku", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
@@ -596,8 +596,8 @@ class add_stok_buku(Frame):
 		self.e2 = Entry(self, width="30", textvariable= self.jumlah).grid(row=3, column=1,sticky = W)
 
 		# BUTTON
-		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, font=("Comic Sans MS", 10), bg="#003B7A", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
-		Button(self, text="TAMBAHKAN", command=self.pinjamkan_buku, relief=FLAT, font=("Comic Sans MS", 10), bg="#003B7A", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
+		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
+		Button(self, text="TAMBAHKAN", command=self.pinjamkan_buku, relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=1, sticky=E, padx= 20, pady=50)
 
 	def pinjamkan_buku(self):
 		# GUI
