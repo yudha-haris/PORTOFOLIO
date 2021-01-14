@@ -1,0 +1,1 @@
+{"Example":["Contoh Buku","2001","Jane Doe","DC/MCU","Fiksi","20"],}
