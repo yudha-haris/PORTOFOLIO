@@ -12,4 +12,3 @@
 <p> mendata nama peminjam <b>[admin]</b></p>
 <p> mendata buku yang dipinjam dan dikembalikan <b>[admin]</b></p
 <p> pemantauan status buku dan peminjam kini bisa discroll <b>[admin]</b></p>
-
