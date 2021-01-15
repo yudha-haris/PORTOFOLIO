@@ -8,3 +8,7 @@
 <p>- menampilkan keseluruhan data <b>[admin]</b></p>
 <p>- menyimpan perubahan data (save) <b>[admin]</b></p>
 <p>- menggunakan data yang telah ada (load) <b>[admin]</b></p>
+<H3><b>Baru!</b></H3>
+<p> mendata nama peminjam <b>[admin]</b></p>
+<p> mendata buku yang dipinjam dan dikembalikan <b>[admin]</b></p
+<p> pemantauan status buku dan peminjam kini bisa discroll <b>[admin]</b></p>
