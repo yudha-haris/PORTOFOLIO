@@ -60,7 +60,7 @@ def status():
 	# ACTION
 	status_data = []
 	for x,y in database.items():
-		status_data.append(f"___{x}___")
+		status_data.append(f"\n>>>> {x}")
 		for i in range(len(y)):
 			if i % 6 == 0:
 				status_data.append(f"{y[i]}, stock: {y[i+5]}")
@@ -96,9 +96,9 @@ def pinjaman():
 	# ACTION
 	status_data = []
 	for x,y in data_pinjam.items():
-		status_data.append(f"___{x}___")
+		status_data.append(f"\n>>>> {x}")
 		for i in range(len(y)):
-			if i % 6 == 0:
+			if i % 2 == 0:
 				status_data.append(f"{y[i]}, banyak: {y[i+1]}")
 	if status_data == []:
 		result_status_data = "Belum ada buku dipinjam!\nsilakan load database manual"
@@ -261,7 +261,7 @@ class login(Frame):
 		self.username = StringVar()
 		self.password = StringVar()
 		self.e1 = Entry(self, width="30", textvariable= self.username).grid(row=2, column=0,sticky = E, columnspan=2)
-		self.e2 = Entry(self, width="30", textvariable= self.password).grid(row=3, column=0,sticky = E, columnspan=2)
+		self.e2 = Entry(self, width="30", textvariable= self.password, show="\u2022").grid(row=3, column=0,sticky = E, columnspan=2)
 
 		# BUTTON
 		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("Home_Front"), relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
@@ -577,7 +577,7 @@ class sub_buku(Frame):
 						if self.peminjam.get() in data_pinjam.keys():
 							if self.nama_buku.get() in data_pinjam[self.peminjam.get()]:
 								indeks = data_pinjam[self.peminjam.get()].index(self.nama_buku.get())
-								data_pinjam[self.peminjam.get()][indeks+1] = data_pinjam[self.peminjam.get()][indeks+1] + int(self.jumlah.get())
+								data_pinjam[self.peminjam.get()][indeks+1] = str(int(data_pinjam[self.peminjam.get()][indeks+1]) + int(self.jumlah.get()))
 							else:
 								data_pinjam[self.peminjam.get()].append(self.nama_buku.get())
 								data_pinjam[self.peminjam.get()].append(self.jumlah.get())
@@ -638,7 +638,7 @@ class return_buku(Frame):
 		if self.peminjam.get() in data_pinjam.keys():
 			if self.nama_buku.get() in data_pinjam[self.peminjam.get()]:
 				indeks = data_pinjam[self.peminjam.get()].index(self.nama_buku.get())
-				data_pinjam[self.peminjam.get()][indeks+1] = data_pinjam[self.peminjam.get()][indeks+1] - int(self.jumlah.get())
+				data_pinjam[self.peminjam.get()][indeks+1] = str(int(data_pinjam[self.peminjam.get()][indeks+1]) - int(self.jumlah.get()))
 				for x,y in database.items():
 					for i in range(len(y)):
 						if self.nama_buku.get() == y[i]:
