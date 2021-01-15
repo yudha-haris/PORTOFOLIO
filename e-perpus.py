@@ -47,7 +47,7 @@ def status():
 	Label(overlay_status, text=result_status_data).pack() 
 
 database = {}
-
+data_pinjam = {}
 class Underground(Tk):
 	# Implementasi ini saya dapatkan dari internet dengan keyword "Tkinter multiple frame"
 	# diambil dari beberapa tautan, di antaranya
@@ -469,14 +469,17 @@ class sub_buku(Frame):
 		
 		# LABEL
 		Label(self, text="  Pinjamkan Buku", font=("Metropolis Black", 20)).grid(row=1,column=0, columnspan=2, padx=60, pady=20)
-		Label(self, text="NAMA BUKU	").grid(row=2, sticky=W, padx= 20)
-		Label(self, text="JUMLAH	").grid(row=3, sticky=W, padx= 20)	
+		Label(self, text="PEMINJAM	").grid(row=2, sticky=W, padx= 20)
+		Label(self, text="NAMA BUKU	").grid(row=3, sticky=W, padx= 20)
+		Label(self, text="JUMLAH	").grid(row=4, sticky=W, padx= 20)	
 
 		# ENTRY
+		self.peminjam = StringVar()
 		self.nama_buku = StringVar()
 		self.jumlah = StringVar()
-		self.e1 = Entry(self, width="30", textvariable= self.nama_buku).grid(row=2, column=0,sticky = E, columnspan=2)
-		self.e2 = Entry(self, width="30", textvariable= self.jumlah).grid(row=3, column=0,sticky = E, columnspan=2)
+		self.e0 = Entry(self, width="30", textvariable= self.nama_buku).grid(row=2, column=0,sticky = E, columnspan=2)
+		self.e1 = Entry(self, width="30", textvariable= self.nama_buku).grid(row=3, column=0,sticky = E, columnspan=2)
+		self.e2 = Entry(self, width="30", textvariable= self.jumlah).grid(row=4, column=0,sticky = E, columnspan=2)
 
 		# BUTTON
 		Button(self, text="<< BACK", command=lambda: self.controller.show_frame("buku_menu"), relief=FLAT, font=("Metropolis", 10), bg="#003B7A", fg="white").grid(row=8, column=0, sticky=W, padx= 20, pady=50)
