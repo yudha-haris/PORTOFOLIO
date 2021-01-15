@@ -11,4 +11,8 @@
 <H3><b>Baru!</b></H3>
 <p> mendata nama peminjam <b>[admin]</b></p>
 <p> mendata buku yang dipinjam dan dikembalikan <b>[admin]</b></p
+<<<<<<< HEAD
 <p> pemantauan status buku dan peminjam kini bisa discroll <b>[admin]</b></p>
+=======
+<p> pemantauan status buku dan peminjam kini bisa discroll <b>[admin]</b></p>
+>>>>>>> 82fcc0aa72456712d7b02df2d4a9f2f3a32431f5
